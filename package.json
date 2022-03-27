@@ -1,0 +1,28 @@
+{
+  "name": "asn3rd-cli",
+  "private": true,
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "bin": {
+    "asn3rd-cli": "dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/proj3rd/asn3rd-cli.git"
+  },
+  "author": "Seokseong Jeon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/proj3rd/asn3rd-cli/issues"
+  },
+  "homepage": "https://github.com/proj3rd/asn3rd-cli#readme",
+  "devDependencies": {
+    "@types/word-extractor": "^1.0.1",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "asn3rd": "proj3rd/asn3rd",
+    "commander": "^9.0.0",
+    "word-extractor": "^1.0.4"
+  }
+}
