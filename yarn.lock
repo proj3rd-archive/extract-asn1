@@ -7,18 +7,16 @@
   resolved "https://registry.yarnpkg.com/@types/word-extractor/-/word-extractor-1.0.1.tgz#cc348e04e110f4645690b710a32dfc1c34cdd301"
   integrity sha512-ByIQZ2+TeOok/rJ0+zpTNgIK+6qo/5utDrS0Sk9tiXTcCARAJn/G17uvQc4nW87kRckGt6dOVTTLO/4pRK9S6g==
 
-antlr4@^4.9.3:
-  version "4.9.3"
-  resolved "https://registry.yarnpkg.com/antlr4/-/antlr4-4.9.3.tgz#268b844ff8ce97d022399a05d4b37aa6ab4047b2"
-  integrity sha512-qNy2odgsa0skmNMCuxzXhM4M8J1YDaPv3TI+vCdnOAanu0N982wBrSqziDKRDctEZLZy9VffqIZXc0UGjjSP/g==
+antlr4@^4.10.1:
+  version "4.10.1"
+  resolved "https://registry.yarnpkg.com/antlr4/-/antlr4-4.10.1.tgz#6be8e3e1ead19ca82419ef0ffe974ef4efe4a793"
+  integrity sha512-fmxidcOwmktzHUD+tz8y/zKLI/NfVAB0+MOvnFUBzo8ToFnphK8JY88oOJeRdhnTrAhjtu45bvxddzbb8nMeIA==
 
 asn3rd@proj3rd/asn3rd:
-  version "4.0.1"
-  resolved "https://codeload.github.com/proj3rd/asn3rd/tar.gz/6cd605447ef435aede350183288ad026e54e86c6"
+  version "4.4.0"
+  resolved "https://codeload.github.com/proj3rd/asn3rd/tar.gz/477bbd4bb4746ae06466b95e72b3e917af0d5479"
   dependencies:
-    antlr4 "^4.9.3"
-    commander "^9.0.0"
-    word-extractor "^1.0.4"
+    antlr4 "^4.10.1"
 
 buffer-crc32@~0.2.3:
   version "0.2.13"

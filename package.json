@@ -1,7 +1,8 @@
 {
   "name": "asn3rd-cli",
   "private": true,
-  "version": "1.0.0",
+  "type": "module",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "bin": {
     "asn3rd-cli": "dist/index.js"
