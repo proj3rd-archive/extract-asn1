@@ -13,8 +13,8 @@ antlr4@^4.10.1:
   integrity sha512-fmxidcOwmktzHUD+tz8y/zKLI/NfVAB0+MOvnFUBzo8ToFnphK8JY88oOJeRdhnTrAhjtu45bvxddzbb8nMeIA==
 
 asn3rd@proj3rd/asn3rd:
-  version "4.4.0"
-  resolved "https://codeload.github.com/proj3rd/asn3rd/tar.gz/477bbd4bb4746ae06466b95e72b3e917af0d5479"
+  version "4.4.1"
+  resolved "https://codeload.github.com/proj3rd/asn3rd/tar.gz/473988e0dddb5aa6c1c4dc6b976d7d06379162ec"
   dependencies:
     antlr4 "^4.10.1"
 
