@@ -7,9 +7,9 @@ import WordExtractor from "word-extractor";
 import { extract } from "asn3rd";
 import { parse as parseAsn1 } from "asn3rd";
 
-function commandExtract(path: string) {
-  function extractAndWrite(text: string) {
-    const [error, extracted] = extract(text);
+function commandExtract(path: string, options: any) {
+  function extractAndWrite(text: string, options: any) {
+    const [error, extracted] = extract(text, options);
     if (error) {
       throw error;
     }
@@ -25,7 +25,7 @@ function commandExtract(path: string) {
         .extract(path)
         .then((doc) => {
           const text = doc.getBody();
-          extractAndWrite(text);
+          extractAndWrite(text, options);
         })
         .catch((reason) => {
           throw reason;
@@ -36,7 +36,7 @@ function commandExtract(path: string) {
         if (err) {
           throw err;
         }
-        extractAndWrite(text);
+        extractAndWrite(text, options);
       });
   }
 }
@@ -53,7 +53,7 @@ function commandValidate(path: string) {
       //   const { line, column, msg } = e;
       //   process.stderr.write(`line ${line}:${column} ${msg}`);
       // });
-      process.stderr.write('\n');
+      process.stderr.write("\n");
       process.stderr.write("❌ ASN.1 definition seems to have syntax errors.");
       process.exit(error.errors.length);
     }
@@ -68,7 +68,8 @@ program
   .command("extract")
   .description("Extract ASN.1 definition from a file of a given path")
   .argument("<path>", "path of a file containing ASN.1 definition")
-  .action((path) => commandExtract(path));
+  .option("--exclude-non-tag-comment", "Exclude non tag coment")
+  .action((path, options) => commandExtract(path, options));
 
 program
   .command("validate")
