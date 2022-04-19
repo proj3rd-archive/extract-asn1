@@ -61,21 +61,19 @@ function commandValidate(path: string) {
   });
 }
 
-if (require.main === module) {
-  const program = new Command();
-  program.name("asn3rd").description("ASN.1 utilities by Project 3rd");
+const program = new Command();
+program.name("asn3rd").description("ASN.1 utilities by Project 3rd");
 
-  program
-    .command("extract")
-    .description("Extract ASN.1 definition from a file of a given path")
-    .argument("<path>", "path of a file containing ASN.1 definition")
-    .action((path) => commandExtract(path));
+program
+  .command("extract")
+  .description("Extract ASN.1 definition from a file of a given path")
+  .argument("<path>", "path of a file containing ASN.1 definition")
+  .action((path) => commandExtract(path));
 
-  program
-    .command("validate")
-    .description("Validate ASN.1 definition from a file of a given path")
-    .argument("<path>", "path of a file of ASN.1 definition")
-    .action((path) => commandValidate(path));
+program
+  .command("validate")
+  .description("Validate ASN.1 definition from a file of a given path")
+  .argument("<path>", "path of a file of ASN.1 definition")
+  .action((path) => commandValidate(path));
 
-  program.parse();
-}
+program.parse();

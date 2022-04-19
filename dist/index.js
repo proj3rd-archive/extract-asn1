@@ -1,28 +1,23 @@
 #!/usr/bin/env node
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const commander_1 = require("commander");
-const fs_1 = require("fs");
-const path_1 = require("path");
-const word_extractor_1 = __importDefault(require("word-extractor"));
-const asn3rd_1 = require("asn3rd");
-const asn3rd_2 = require("asn3rd");
+import { Command } from "commander";
+import { readFile } from "fs";
+import { parse } from "path";
+import WordExtractor from "word-extractor";
+import { extract } from "asn3rd";
+import { parse as parseAsn1 } from "asn3rd";
 function commandExtract(path) {
     function extractAndWrite(text) {
-        const [error, extracted] = (0, asn3rd_1.extract)(text);
+        const [error, extracted] = extract(text);
         if (error) {
             throw error;
         }
         process.stdout.write(extracted);
     }
-    const { ext } = (0, path_1.parse)(path);
+    const { ext } = parse(path);
     switch (ext.toLocaleLowerCase()) {
         case ".doc":
         case ".docx":
-            const extractor = new word_extractor_1.default();
+            const extractor = new WordExtractor();
             extractor
                 .extract(path)
                 .then((doc) => {
@@ -34,7 +29,7 @@ function commandExtract(path) {
             });
             break;
         default:
-            (0, fs_1.readFile)(path, { encoding: "utf8" }, (err, text) => {
+            readFile(path, { encoding: "utf8" }, (err, text) => {
                 if (err) {
                     throw err;
                 }
@@ -43,11 +38,11 @@ function commandExtract(path) {
     }
 }
 function commandValidate(path) {
-    (0, fs_1.readFile)(path, { encoding: "utf8" }, (err, text) => {
+    readFile(path, { encoding: "utf8" }, (err, text) => {
         if (err) {
             throw err;
         }
-        const [error] = (0, asn3rd_2.parse)(text);
+        const [error] = parseAsn1(text);
         if (error) {
             // Not necessary. Errors are printed to stderr by default
             // error.errors.forEach((e) => {
@@ -61,19 +56,17 @@ function commandValidate(path) {
         process.stdout.write("✅ ASN.1 definition looks well formed.\n");
     });
 }
-if (require.main === module) {
-    const program = new commander_1.Command();
-    program.name("asn3rd").description("ASN.1 utilities by Project 3rd");
-    program
-        .command("extract")
-        .description("Extract ASN.1 definition from a file of a given path")
-        .argument("<path>", "path of a file containing ASN.1 definition")
-        .action((path) => commandExtract(path));
-    program
-        .command("validate")
-        .description("Validate ASN.1 definition from a file of a given path")
-        .argument("<path>", "path of a file of ASN.1 definition")
-        .action((path) => commandValidate(path));
-    program.parse();
-}
+const program = new Command();
+program.name("asn3rd").description("ASN.1 utilities by Project 3rd");
+program
+    .command("extract")
+    .description("Extract ASN.1 definition from a file of a given path")
+    .argument("<path>", "path of a file containing ASN.1 definition")
+    .action((path) => commandExtract(path));
+program
+    .command("validate")
+    .description("Validate ASN.1 definition from a file of a given path")
+    .argument("<path>", "path of a file of ASN.1 definition")
+    .action((path) => commandValidate(path));
+program.parse();
 //# sourceMappingURL=index.js.map
