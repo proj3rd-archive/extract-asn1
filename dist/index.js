@@ -1,23 +1,35 @@
 #!/usr/bin/env node
-import { Command } from "commander";
-import { readFile } from "fs";
-import { parse } from "path";
-import WordExtractor from "word-extractor";
-import { extract } from "asn3rd";
-import { parse as parseAsn1 } from "asn3rd";
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const commander_1 = require("commander");
+const fs_1 = require("fs");
+const path_1 = require("path");
+const word_extractor_1 = __importDefault(require("word-extractor"));
+const asn1_1 = require("lib3rd/dist/packages/asn1");
 function commandExtract(path, options) {
     function extractAndWrite(text, options) {
-        const [error, extracted] = extract(text, options);
-        if (error) {
-            throw error;
-        }
-        process.stdout.write(extracted);
+        return __awaiter(this, void 0, void 0, function* () {
+            const extracted = yield (0, asn1_1.extract)(text, options);
+            process.stdout.write(extracted);
+        });
     }
-    const { ext } = parse(path);
+    const { ext } = (0, path_1.parse)(path);
     switch (ext.toLocaleLowerCase()) {
         case ".doc":
         case ".docx":
-            const extractor = new WordExtractor();
+            const extractor = new word_extractor_1.default();
             extractor
                 .extract(path)
                 .then((doc) => {
@@ -29,7 +41,7 @@ function commandExtract(path, options) {
             });
             break;
         default:
-            readFile(path, { encoding: "utf8" }, (err, text) => {
+            (0, fs_1.readFile)(path, { encoding: "utf8" }, (err, text) => {
                 if (err) {
                     throw err;
                 }
@@ -37,37 +49,12 @@ function commandExtract(path, options) {
             });
     }
 }
-function commandValidate(path) {
-    readFile(path, { encoding: "utf8" }, (err, text) => {
-        if (err) {
-            throw err;
-        }
-        const [error] = parseAsn1(text);
-        if (error) {
-            // Not necessary. Errors are printed to stderr by default
-            // error.errors.forEach((e) => {
-            //   const { line, column, msg } = e;
-            //   process.stderr.write(`line ${line}:${column} ${msg}`);
-            // });
-            process.stderr.write("\n");
-            process.stderr.write("❌ ASN.1 definition seems to have syntax errors.");
-            process.exit(error.errors.length);
-        }
-        process.stdout.write("✅ ASN.1 definition looks well formed.\n");
-    });
-}
-const program = new Command();
-program.name("asn3rd").description("ASN.1 utilities by Project 3rd");
+const program = new commander_1.Command();
+program.name("extract-asn1").description("ASN.1 extractor by Project 3rd");
 program
-    .command("extract")
     .description("Extract ASN.1 definition from a file of a given path")
     .argument("<path>", "path of a file containing ASN.1 definition")
-    .option("--exclude-non-tag-comment", "Exclude non tag coment")
+    .option("--exclude-non-tag-comment", "Exclude non tag comment (tag is used by RRC specifications)")
     .action((path, options) => commandExtract(path, options));
-program
-    .command("validate")
-    .description("Validate ASN.1 definition from a file of a given path")
-    .argument("<path>", "path of a file of ASN.1 definition")
-    .action((path) => commandValidate(path));
 program.parse();
 //# sourceMappingURL=index.js.map
