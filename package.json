@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "commander": "^9.0.0",
-    "lib3rd": "proj3rd/lib3rd",
+    "lib3rd": "proj3rd/lib3rd#04c0dab94b772f5a171661247da16d2f52da2a97",
     "word-extractor": "^1.0.4"
   }
 }
