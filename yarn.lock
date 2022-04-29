@@ -24,7 +24,7 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-lib3rd@proj3rd/lib3rd:
+lib3rd@proj3rd/lib3rd#04c0dab94b772f5a171661247da16d2f52da2a97:
   version "0.0.0"
   resolved "https://codeload.github.com/proj3rd/lib3rd/tar.gz/04c0dab94b772f5a171661247da16d2f52da2a97"
   dependencies:
