@@ -1,7 +1,7 @@
 {
   "name": "extract-asn1",
   "type": "commonjs",
-  "version": "v2.0.0",
+  "version": "v2.0.1",
   "main": "dist/index.js",
   "bin": {
     "extract-asn1": "dist/index.js"
