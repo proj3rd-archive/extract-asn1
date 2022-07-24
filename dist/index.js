@@ -13,15 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const asn3rd_1 = require("asn3rd");
 const commander_1 = require("commander");
 const fs_1 = require("fs");
 const path_1 = require("path");
 const word_extractor_1 = __importDefault(require("word-extractor"));
-const asn1_1 = require("lib3rd/dist/packages/asn1");
 function commandExtract(path, options) {
     function extractAndWrite(text, options) {
         return __awaiter(this, void 0, void 0, function* () {
-            const extracted = yield (0, asn1_1.extract)(text, options);
+            const extracted = yield (0, asn3rd_1.extract)(text, options);
             process.stdout.write(extracted);
         });
     }
