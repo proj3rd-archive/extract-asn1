@@ -16,7 +16,9 @@ import WordExtractor from "word-extractor";
 function commandExtract(path, options) {
     function extractAndWrite(text, options) {
         return __awaiter(this, void 0, void 0, function* () {
-            const extracted = yield extract(text, options);
+            const extracted = (yield extract(text, options))
+                // repalce '혻' (U+D63B) with whitespace
+                .replace(/\uD63B/g, " ");
             process.stdout.write(extracted);
         });
     }
