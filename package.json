@@ -1,7 +1,7 @@
 {
   "name": "extract-asn1",
   "type": "module",
-  "version": "v2.1.0",
+  "version": "v2.2.0",
   "main": "dist/index.js",
   "bin": {
     "extract-asn1": "dist/index.js"
