@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { extract } from "asn3rd";
 import { Command } from "commander";
 import { readFile } from "fs";
 import { parse } from "path";
 import WordExtractor from "word-extractor";
+import { extract } from "./extractor";
 
 function commandExtract(path: string, options: any) {
   async function extractAndWrite(text: string, options: any) {

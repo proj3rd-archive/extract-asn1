@@ -22,7 +22,6 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "asn3rd": "proj3rd/asn3rd#v4.5.1",
     "commander": "^9.0.0",
     "word-extractor": "^1.0.4"
   }
