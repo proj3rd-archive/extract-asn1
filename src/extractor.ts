@@ -89,6 +89,8 @@ export async function extract(
     : joined
         .replace(/--.*?--/g, "") // inline comment
         .replace(/^[ \t]*?--[ \t]*?.*$/gm, "") // whole line comment
-        .replace(/--[ \t]*?((?!need|cond).)*?$/gim, ""); // need or cond tags
+        .replace(/--[ \t]*?((?!need|cond).)*?$/gim, "") // need or cond tags
+        .replace(/-- max number.*?$/gim, "")
+        .replace(/-- maximum.*?$/gim, "");
   return Promise.resolve(result);
 }
