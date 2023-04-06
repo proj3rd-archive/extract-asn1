@@ -12,7 +12,7 @@ import { Command } from "commander";
 import { readFile } from "fs";
 import { parse } from "path";
 import WordExtractor from "word-extractor";
-import { extract } from "./extractor";
+import { extract } from "./extractor.js";
 function commandExtract(path, options) {
     function extractAndWrite(text, options) {
         return __awaiter(this, void 0, void 0, function* () {

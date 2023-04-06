@@ -4,7 +4,7 @@ import { Command } from "commander";
 import { readFile } from "fs";
 import { parse } from "path";
 import WordExtractor from "word-extractor";
-import { extract } from "./extractor";
+import { extract } from "./extractor.js";
 
 function commandExtract(path: string, options: any) {
   async function extractAndWrite(text: string, options: any) {
