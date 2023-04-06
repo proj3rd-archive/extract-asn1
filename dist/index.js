@@ -8,11 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { extract } from "asn3rd";
 import { Command } from "commander";
 import { readFile } from "fs";
 import { parse } from "path";
 import WordExtractor from "word-extractor";
+import { extract } from "./extractor";
 function commandExtract(path, options) {
     function extractAndWrite(text, options) {
         return __awaiter(this, void 0, void 0, function* () {
